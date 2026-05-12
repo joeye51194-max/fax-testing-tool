@@ -317,6 +317,80 @@ dd {
   border-top: 1px solid var(--line);
 }
 
+.fax-preview-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(320px, 1.2fr);
+  gap: 28px;
+  align-items: center;
+  padding: 34px 0;
+  border-top: 1px solid var(--line);
+}
+
+.preview-copy p {
+  color: var(--muted);
+}
+
+.fax-preview {
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #eef3f1;
+}
+
+.fax-sheet {
+  width: min(100%, 520px);
+  min-height: 560px;
+  padding: 46px 42px;
+  border: 1px solid #cdd5dc;
+  border-radius: 4px;
+  background: white;
+  box-shadow: 0 18px 34px rgba(32, 33, 36, 0.14);
+}
+
+.fax-lines {
+  display: grid;
+  gap: 7px;
+  width: 120px;
+  margin-bottom: 36px;
+}
+
+.fax-lines span {
+  display: block;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--line);
+}
+
+.fax-sheet h3 {
+  margin: 0;
+  text-align: center;
+  font-size: 1.85rem;
+}
+
+.fax-sheet > p {
+  text-align: center;
+}
+
+.fax-sheet dl {
+  display: grid;
+  gap: 16px;
+  margin: 40px 0;
+}
+
+.fax-sheet dl div {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
+.fax-note {
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+}
+
 .how-it-works,
 .faq-section {
   padding: 34px 0;
@@ -457,6 +531,7 @@ dd {
 
   .hero,
   .info-band,
+  .fax-preview-section,
   .steps-grid {
     grid-template-columns: 1fr;
   }

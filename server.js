@@ -74,7 +74,6 @@ function publicConfig() {
 function serializeTest(record) {
   return {
     id: record.id,
-    faxId: record.faxId,
     to: record.to,
     from: record.from,
     status: record.status,
@@ -121,7 +120,7 @@ function upsertWebhookEvent(eventBody) {
   return record;
 }
 
-async function sendProviderFax({ to, id }) {
+async function sendProviderFax({ to }) {
   const response = await fetch("https://api.telnyx.com/v2/faxes", {
     method: "POST",
     headers: {
@@ -132,7 +131,7 @@ async function sendProviderFax({ to, id }) {
       connection_id: process.env.TELNYX_FAX_CONNECTION_ID,
       from: process.env.TELNYX_FAX_FROM_NUMBER,
       to,
-      media_url: `${siteUrl}/test-fax.pdf?test_id=${encodeURIComponent(id)}`,
+      media_url: `${siteUrl}/test-fax.pdf`,
       webhook_url: `${siteUrl}/webhooks/fax-provider`
     })
   });
@@ -186,7 +185,7 @@ app.post("/api/fax-tests", faxLimiter, async (req, res) => {
   }
 
   try {
-    const fax = await sendProviderFax({ to, id });
+    const fax = await sendProviderFax({ to });
     record.faxId = fax.id || null;
     record.status = fax.status || "queued";
     record.updatedAt = new Date().toISOString();
@@ -221,7 +220,6 @@ app.post("/webhooks/fax-provider", (req, res) => {
 
 app.get("/test-fax.pdf", (req, res) => {
   const doc = new PDFDocument({ size: "LETTER", margin: 72 });
-  const testId = String(req.query.test_id || "manual-test");
 
   res.setHeader("Content-Type", "application/pdf");
   res.setHeader("Content-Disposition", "inline; filename=\"fax-test-page.pdf\"");
@@ -231,8 +229,7 @@ app.get("/test-fax.pdf", (req, res) => {
   doc.moveDown();
   doc.fontSize(13).text("This is an automated fax delivery test.", { align: "center" });
   doc.moveDown(2);
-  doc.fontSize(11).text(`Test ID: ${testId}`);
-  doc.text(`Generated: ${new Date().toISOString()}`);
+  doc.fontSize(11).text(`Generated: ${new Date().toISOString()}`);
   doc.text("Purpose: confirm that the destination endpoint can receive a fax transmission.");
   doc.moveDown();
   doc.text("No reply is required. If this page was received, the destination fax endpoint accepted the test transmission.");

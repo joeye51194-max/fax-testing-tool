@@ -68,7 +68,7 @@
             network reports queueing, sending, delivery, or failure.
           </p>
           <div class="trust-row" aria-label="FaxSignal testing benefits">
-            <span>🧪 Safe test page</span>
+            <span>🧪 Default test page</span>
             <span>📡 Delivery signal</span>
             <span>🛡️ Rate limited</span>
           </div>
@@ -112,6 +112,42 @@
         </div>
       </section>
 
+      <section class="fax-preview-section">
+        <div class="preview-copy">
+          <p class="eyebrow">🧾 Default fax page</p>
+          <h2>What gets sent</h2>
+          <p>
+            Every check sends this same plain test page automatically, so the recipient knows exactly what to expect.
+            No private document is attached to the fax.
+          </p>
+          <a class="text-link" href="/test-fax.pdf" target="_blank" rel="noopener">Open the generated PDF</a>
+        </div>
+        <div class="fax-preview" aria-label="Preview of the default test fax page">
+          <div class="fax-sheet">
+            <div class="fax-lines" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <h3>Fax Test Page</h3>
+            <p>This is an automated fax delivery test.</p>
+            <dl>
+              <div>
+                <dt>Generated</dt>
+                <dd>Timestamp added when sent</dd>
+              </div>
+              <div>
+                <dt>Purpose</dt>
+                <dd>Confirm that the destination endpoint can receive a fax transmission.</dd>
+              </div>
+            </dl>
+            <p class="fax-note">
+              No reply is required. If this page was received, the destination fax endpoint accepted the test transmission.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section class="how-it-works">
         <h2>How the checkup works</h2>
         <div class="steps-grid">
@@ -122,8 +158,8 @@
           </div>
           <div>
             <span>2</span>
-            <h3>Send a neutral page</h3>
-            <p>FaxSignal sends a plain test sheet with no private customer, patient, or account data.</p>
+            <h3>Send the default page</h3>
+            <p>FaxSignal sends one plain test sheet with no private customer, patient, or account data.</p>
           </div>
           <div>
             <span>3</span>
