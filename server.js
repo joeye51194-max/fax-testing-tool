@@ -190,7 +190,7 @@ app.post("/api/fax-tests", faxLimiter, async (req, res) => {
     record.faxId = fax.id || null;
     record.status = fax.status || "queued";
     record.updatedAt = new Date().toISOString();
-    record.events.push(createTimelineEvent("provider.accepted", `Fax ID: ${record.faxId || "pending"}`));
+    record.events.push(createTimelineEvent("provider.accepted", "The transmission request was accepted for delivery."));
     res.status(202).json(serializeTest(record));
   } catch (error) {
     record.status = "failed";

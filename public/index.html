@@ -3,17 +3,52 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Send a controlled test fax and track delivery status from a fax transmission provider.">
+    <meta name="description" content="FaxSignal sends a safe test fax so you can check whether a fax endpoint is reachable, receiving, and ready before real documents are sent.">
     <meta name="google-site-verification" content="Vd3u8Q2LMt1oJimx-ZL-PciMQme2R0vy7m7Flj4dyw0">
 
-    <title>Fax Test Tool</title>
+    <title>FaxSignal | Test Your Fax Line Before It Matters</title>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5598442129425089" crossorigin="anonymous"></script>
 
+    <meta property="og:title" content="FaxSignal | Test Your Fax Line Before It Matters">
+    <meta property="og:description" content="Send a safe test fax and check the delivery signal for your fax endpoint.">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Can FaxSignal prove a person read the fax?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. FaxSignal can show the transmission signal reported by the fax network, but human review requires confirmation from the receiving organization."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Should I use real documents for testing?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Use a neutral test page so setup checks do not expose private, medical, financial, or legal information."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why did a fax test fail?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Common reasons include a non-fax destination, a busy endpoint, a timeout, routing problems, or a receiving device that cannot complete negotiation."
+            }
+          }
+        ]
+      }
+    </script>
     <link rel="stylesheet" href="/styles.css">
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="/">Fax Test Tool</a>
+      <a class="brand" href="/">📡 FaxSignal</a>
       <nav aria-label="Main navigation">
         <a href="/about.html">About</a>
         <a href="/resources.html">Resources</a>
@@ -26,18 +61,24 @@
     <main>
       <section class="hero">
         <div class="hero-copy">
-          <p class="eyebrow">Fax endpoint delivery checks</p>
-          <h1>Send a test fax and watch the delivery result.</h1>
+          <p class="eyebrow">📋 Fax endpoint checkup</p>
+          <h1>Test your fax line before it matters.</h1>
           <p>
-            Enter a destination fax number, send a standard test page, and track the status as the fax network reports queueing,
-            sending, delivery, or failure.
+            FaxSignal sends a safe, plain test page to your destination number and shows the delivery signal as the fax
+            network reports queueing, sending, delivery, or failure.
           </p>
+          <div class="trust-row" aria-label="FaxSignal testing benefits">
+            <span>🧪 Safe test page</span>
+            <span>📡 Delivery signal</span>
+            <span>🛡️ Rate limited</span>
+          </div>
         </div>
         <form id="fax-form" class="tool-panel" novalidate>
+          <p class="tool-kicker">🩺 Run a fax checkup</p>
           <label for="fax-number">Destination fax number</label>
           <div class="input-row">
             <input id="fax-number" name="to" type="tel" inputmode="tel" autocomplete="tel" placeholder="+15551234567" required>
-            <button type="submit">Send Test Fax</button>
+            <button type="submit">Send Test</button>
           </div>
           <p class="field-help">Use E.164 format, including country code.</p>
           <p id="mode-note" class="mode-note" hidden></p>
@@ -47,27 +88,48 @@
       <section class="results-section" aria-live="polite">
         <div class="section-heading">
           <h2>Latest test</h2>
-          <button id="refresh-button" type="button" disabled>Refresh</button>
+          <button id="refresh-button" type="button" disabled>Refresh Status</button>
         </div>
         <div id="result-card" class="result-card empty">
-          <p>No test fax has been started yet.</p>
+          <p>📭 No fax check has been started yet.</p>
         </div>
       </section>
 
       <section class="info-band">
         <div>
-          <h2>What this verifies</h2>
+          <h2>✅ What this verifies</h2>
           <p>
             A delivered result means the fax provider reported successful transmission to the destination endpoint. It does
             not prove that a person reviewed, printed, or filed the document.
           </p>
         </div>
         <div>
-          <h2>Built for safe testing</h2>
+          <h2>🛡️ Built for safe testing</h2>
           <p>
             The app keeps API credentials on the server, rate limits public sends, and uses a simple generated PDF so test
             pages are consistent.
           </p>
+        </div>
+      </section>
+
+      <section class="how-it-works">
+        <h2>How the checkup works</h2>
+        <div class="steps-grid">
+          <div>
+            <span>1</span>
+            <h3>Enter a number</h3>
+            <p>Use the destination fax number you own, manage, or have permission to test.</p>
+          </div>
+          <div>
+            <span>2</span>
+            <h3>Send a neutral page</h3>
+            <p>FaxSignal sends a plain test sheet with no private customer, patient, or account data.</p>
+          </div>
+          <div>
+            <span>3</span>
+            <h3>Read the signal</h3>
+            <p>Refresh the status timeline to see whether the transmission was queued, accepted, delivered, or failed.</p>
+          </div>
         </div>
       </section>
 
@@ -94,10 +156,26 @@
           </a>
         </div>
       </section>
+
+      <section class="faq-section">
+        <h2>Fax testing FAQ</h2>
+        <details>
+          <summary>Can FaxSignal prove a person read the fax?</summary>
+          <p>No. It can show the transmission signal reported by the fax network, but human review requires confirmation from the receiving organization.</p>
+        </details>
+        <details>
+          <summary>Should I use real documents for testing?</summary>
+          <p>No. Use a neutral test page so setup checks do not expose private, medical, financial, or legal information.</p>
+        </details>
+        <details>
+          <summary>Why did a fax test fail?</summary>
+          <p>Common reasons include a non-fax destination, a busy endpoint, a timeout, routing problems, or a receiving device that cannot complete negotiation.</p>
+        </details>
+      </section>
     </main>
 
     <footer class="site-footer">
-      <p>&copy; <span id="year"></span> Fax Test Tool</p>
+      <p>&copy; <span id="year"></span> FaxSignal</p>
     </footer>
 
     <script src="/app.js" defer></script>

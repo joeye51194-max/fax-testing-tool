@@ -91,6 +91,25 @@ main {
   font-size: 1.08rem;
 }
 
+.trust-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.trust-row span,
+.tool-kicker {
+  font-weight: 800;
+}
+
+.trust-row span {
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel);
+}
+
 .eyebrow {
   margin: 0 0 8px;
   color: var(--accent);
@@ -110,6 +129,11 @@ main {
 
 .tool-panel {
   padding: 24px;
+}
+
+.tool-kicker {
+  margin: 0 0 14px;
+  color: var(--brand-dark);
 }
 
 label {
@@ -199,9 +223,16 @@ button:disabled {
 }
 
 .result-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   margin: 0;
   font-size: 1.8rem;
   text-transform: capitalize;
+}
+
+.result-card h4 {
+  margin: 18px 0 8px;
 }
 
 .status-pill {
@@ -286,6 +317,64 @@ dd {
   border-top: 1px solid var(--line);
 }
 
+.how-it-works,
+.faq-section {
+  padding: 34px 0;
+  border-top: 1px solid var(--line);
+}
+
+.how-it-works h2,
+.faq-section h2 {
+  margin-top: 0;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.steps-grid div {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.steps-grid span {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--brand);
+  color: white;
+  font-weight: 800;
+}
+
+.steps-grid h3 {
+  margin: 12px 0 6px;
+}
+
+.steps-grid p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.faq-section details {
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+}
+
+.faq-section summary {
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.faq-section p {
+  color: var(--muted);
+}
+
 .content-page {
   max-width: 760px;
 }
@@ -367,7 +456,8 @@ dd {
   }
 
   .hero,
-  .info-band {
+  .info-band,
+  .steps-grid {
     grid-template-columns: 1fr;
   }
 
