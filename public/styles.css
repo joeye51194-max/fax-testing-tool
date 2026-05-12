@@ -23,14 +23,42 @@
 }
 
 body {
+  position: relative;
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   color: var(--ink);
   background:
-    linear-gradient(145deg, rgba(223, 243, 239, 0.9) 0%, rgba(255, 248, 242, 0.55) 42%, rgba(244, 247, 248, 0.95) 78%),
-    repeating-linear-gradient(90deg, rgba(0, 106, 103, 0.035) 0, rgba(0, 106, 103, 0.035) 1px, transparent 1px, transparent 52px),
+    radial-gradient(circle at 12% 12%, rgba(0, 106, 103, 0.2), transparent 30%),
+    radial-gradient(circle at 86% 8%, rgba(183, 79, 43, 0.16), transparent 28%),
+    radial-gradient(circle at 50% 72%, rgba(0, 106, 103, 0.12), transparent 36%),
+    linear-gradient(145deg, rgba(223, 243, 239, 0.92) 0%, rgba(255, 248, 242, 0.58) 42%, rgba(244, 247, 248, 0.98) 78%),
     var(--soft);
   line-height: 1.5;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(0, 106, 103, 0.055) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(0, 106, 103, 0.045) 1px, transparent 1px);
+  background-size: 54px 54px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.28) 58%, rgba(0, 0, 0, 0.08));
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(115deg, transparent 0 14%, rgba(0, 106, 103, 0.16) 14.2%, transparent 14.6% 41%, rgba(183, 79, 43, 0.12) 41.2%, transparent 41.6%),
+    linear-gradient(62deg, transparent 0 55%, rgba(0, 106, 103, 0.1) 55.2%, transparent 55.7%);
+  opacity: 0.75;
 }
 
 a {
@@ -92,6 +120,12 @@ main {
   margin: 0 auto;
 }
 
+main,
+.site-footer {
+  position: relative;
+  z-index: 1;
+}
+
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
@@ -145,10 +179,11 @@ main {
 
 .tool-panel,
 .result-card {
-  background: var(--panel);
+  background: rgba(255, 255, 255, 0.9);
   border: 1px solid var(--line);
   border-radius: 8px;
   box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
 }
 
 .tool-panel {
@@ -383,7 +418,8 @@ dd {
   border: 1px solid var(--line);
   border-radius: 8px;
   background:
-    linear-gradient(135deg, rgba(223, 243, 239, 0.9), rgba(255, 248, 242, 0.9));
+    linear-gradient(135deg, rgba(223, 243, 239, 0.92), rgba(255, 248, 242, 0.92)),
+    repeating-linear-gradient(90deg, rgba(0, 106, 103, 0.08) 0, rgba(0, 106, 103, 0.08) 1px, transparent 1px, transparent 24px);
 }
 
 .fax-sheet {
