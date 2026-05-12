@@ -15,31 +15,51 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
+        "@graph": [
           {
-            "@type": "Question",
-            "name": "Can FaxSignal prove a person read the fax?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "No. FaxSignal can show the transmission signal reported by the fax network, but human review requires confirmation from the receiving organization."
-            }
+            "@type": "WebApplication",
+            "name": "FaxSignal",
+            "url": "https://faxsignal.com",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "Web",
+            "description": "FaxSignal sends a default test fax page so teams can check whether a fax endpoint is reachable before sending real documents."
           },
           {
-            "@type": "Question",
-            "name": "Should I use real documents for testing?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "No. Use a neutral test page so setup checks do not expose private, medical, financial, or legal information."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Why did a fax test fail?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Common reasons include a non-fax destination, a busy endpoint, a timeout, routing problems, or a receiving device that cannot complete negotiation."
-            }
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Can FaxSignal prove a person read the fax?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. FaxSignal can show the transmission signal reported by the fax network, but human review requires confirmation from the receiving organization."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Should I use real documents for testing?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. Use a neutral test page so setup checks do not expose private, medical, financial, or legal information."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Why did a fax test fail?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Common reasons include a non-fax destination, a busy endpoint, a timeout, routing problems, or a receiving device that cannot complete negotiation."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What page does FaxSignal send?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "FaxSignal sends one default test page with a generated timestamp, purpose statement, and no private document content."
+                }
+              }
+            ]
           }
         ]
       }
@@ -149,23 +169,68 @@
       </section>
 
       <section class="how-it-works">
-        <h2>How the checkup works</h2>
-        <div class="steps-grid">
-          <div>
-            <span>1</span>
+        <div class="section-intro">
+          <p class="eyebrow">🧭 Three-step signal check</p>
+          <h2>How the checkup works</h2>
+          <p>FaxSignal keeps the test simple: one number, one default page, one readable delivery signal.</p>
+        </div>
+        <div class="steps-grid" aria-label="FaxSignal checkup process">
+          <div class="step-card">
+            <span class="step-number">1</span>
+            <span class="step-icon" aria-hidden="true">☎️</span>
             <h3>Enter a number</h3>
             <p>Use the destination fax number you own, manage, or have permission to test.</p>
           </div>
-          <div>
-            <span>2</span>
+          <div class="step-card">
+            <span class="step-number">2</span>
+            <span class="step-icon" aria-hidden="true">🧾</span>
             <h3>Send the default page</h3>
             <p>FaxSignal sends one plain test sheet with no private customer, patient, or account data.</p>
           </div>
-          <div>
-            <span>3</span>
+          <div class="step-card">
+            <span class="step-number">3</span>
+            <span class="step-icon" aria-hidden="true">📡</span>
             <h3>Read the signal</h3>
             <p>Refresh the status timeline to see whether the transmission was queued, accepted, delivered, or failed.</p>
           </div>
+        </div>
+      </section>
+
+      <section class="use-cases">
+        <div class="section-intro">
+          <p class="eyebrow">📌 When to use it</p>
+          <h2>Useful before real paperwork moves</h2>
+          <p>FaxSignal is for quick operational checks when a fax endpoint needs to be ready and trusted.</p>
+        </div>
+        <div class="use-case-grid">
+          <div>
+            <h3>New fax line setup</h3>
+            <p>Confirm a newly assigned fax number can receive from an outside sender before publishing it.</p>
+          </div>
+          <div>
+            <h3>Vendor onboarding</h3>
+            <p>Check a partner, clinic, office, or department endpoint before sending documents that matter.</p>
+          </div>
+          <div>
+            <h3>Routing changes</h3>
+            <p>Run a quick check after inbox, queue, device, or forwarding changes to catch mistakes early.</p>
+          </div>
+          <div>
+            <h3>Incident follow-up</h3>
+            <p>Use a neutral test page after a failed fax report to separate line problems from workflow problems.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="quality-section">
+        <div>
+          <p class="eyebrow">🧠 Interpreting results</p>
+          <h2>A delivered signal is useful, but not the whole story.</h2>
+        </div>
+        <div class="quality-list">
+          <p><strong>Delivered</strong> means the transmission was reported as completed by the fax network.</p>
+          <p><strong>Failed</strong> means the send did not complete and may need a line, routing, or number-format check.</p>
+          <p><strong>Human confirmation</strong> is still needed when the business process requires proof that a person reviewed the page.</p>
         </div>
       </section>
 

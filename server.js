@@ -89,18 +89,18 @@ function upsertWebhookEvent(eventBody) {
   const data = eventBody.data || eventBody;
   const eventType = data.event_type || eventBody.event_type || "fax.event";
   const payload = data.payload || {};
-  const faxId = payload.fax_id || data.id || payload.id;
+  const providerReference = payload.fax_id || data.id || payload.id;
 
-  if (!faxId) {
+  if (!providerReference) {
     return null;
   }
 
-  let record = [...faxTests.values()].find((item) => item.faxId === faxId);
+  let record = [...faxTests.values()].find((item) => item.providerReference === providerReference);
   if (!record) {
     const id = crypto.randomUUID();
     record = {
       id,
-      faxId,
+      providerReference,
       to: payload.to || "unknown",
       from: payload.from || "unknown",
       status: payload.status || eventType.replace("fax.", ""),
@@ -162,7 +162,7 @@ app.post("/api/fax-tests", faxLimiter, async (req, res) => {
   const now = new Date().toISOString();
   const record = {
     id,
-    faxId: null,
+    providerReference: null,
     to,
     from: process.env.TELNYX_FAX_FROM_NUMBER || "not configured",
     status: dryRun ? "dry_run" : "queued",
@@ -186,7 +186,7 @@ app.post("/api/fax-tests", faxLimiter, async (req, res) => {
 
   try {
     const fax = await sendProviderFax({ to });
-    record.faxId = fax.id || null;
+    record.providerReference = fax.id || null;
     record.status = fax.status || "queued";
     record.updatedAt = new Date().toISOString();
     record.events.push(createTimelineEvent("provider.accepted", "The transmission request was accepted for delivery."));

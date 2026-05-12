@@ -5,7 +5,7 @@ const refreshButton = document.querySelector("#refresh-button");
 const modeNote = document.querySelector("#mode-note");
 const year = document.querySelector("#year");
 
-let currentTestId = window.localStorage.getItem("faxsignal_latest_test_id");
+let currentTestRef = window.localStorage.getItem("faxsignal_latest_check");
 let pollTimer = null;
 
 year.textContent = new Date().getFullYear();
@@ -95,20 +95,21 @@ async function loadConfig() {
 }
 
 async function refreshResult() {
-  if (!currentTestId) {
+  if (!currentTestRef) {
     renderError("Start a fax check first, then refresh will re-check that result.");
     return;
   }
 
   const previousLabel = refreshButton.textContent;
   refreshButton.disabled = true;
+  refreshButton.setAttribute("aria-busy", "true");
   refreshButton.textContent = "Checking...";
 
   try {
-    const response = await fetch(`/api/fax-tests/${currentTestId}`);
+    const response = await fetch(`/api/fax-tests/${currentTestRef}`);
     if (!response.ok) {
-      window.localStorage.removeItem("faxsignal_latest_test_id");
-      currentTestId = null;
+      window.localStorage.removeItem("faxsignal_latest_check");
+      currentTestRef = null;
       refreshButton.disabled = true;
       renderError("That fax check is no longer available. Start a new check to see a fresh status.");
       return;
@@ -118,9 +119,10 @@ async function refreshResult() {
   } catch (error) {
     renderError("Refresh could not reach the status service. Try again in a moment.");
   } finally {
-    if (currentTestId) {
+    if (currentTestRef) {
       refreshButton.disabled = false;
     }
+    refreshButton.removeAttribute("aria-busy");
     refreshButton.textContent = previousLabel;
   }
 }
@@ -134,6 +136,7 @@ form.addEventListener("submit", async (event) => {
   event.preventDefault();
   const button = form.querySelector("button");
   button.disabled = true;
+  button.setAttribute("aria-busy", "true");
   button.textContent = "Sending...";
   renderError("Starting fax test...");
 
@@ -147,16 +150,16 @@ form.addEventListener("submit", async (event) => {
 
     if (!response.ok) {
       if (body.test) {
-        currentTestId = body.test.id;
-        window.localStorage.setItem("faxsignal_latest_test_id", currentTestId);
+        currentTestRef = body.test.id;
+        window.localStorage.setItem("faxsignal_latest_check", currentTestRef);
         refreshButton.disabled = false;
         renderResult(body.test);
       }
       throw new Error(body.error || "The fax test could not be started.");
     }
 
-    currentTestId = body.id;
-    window.localStorage.setItem("faxsignal_latest_test_id", currentTestId);
+    currentTestRef = body.id;
+    window.localStorage.setItem("faxsignal_latest_check", currentTestRef);
     refreshButton.disabled = false;
     renderResult(body);
     startPolling();
@@ -164,6 +167,7 @@ form.addEventListener("submit", async (event) => {
     renderError(error.message);
   } finally {
     button.disabled = false;
+    button.removeAttribute("aria-busy");
     button.textContent = "Send Test";
   }
 });
@@ -175,7 +179,7 @@ loadConfig().catch(() => {
   modeNote.textContent = "Configuration could not be loaded.";
 });
 
-if (currentTestId) {
+if (currentTestRef) {
   refreshButton.disabled = false;
   refreshResult();
 }
