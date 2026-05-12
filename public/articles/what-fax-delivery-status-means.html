@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Understand common fax delivery statuses such as queued, sending, delivered, and failed.">
+    <title>What Fax Delivery Status Means | Fax Test Tool</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">Fax Test Tool</a>
+      <nav aria-label="Main navigation">
+        <a href="/about.html">About</a>
+        <a href="/resources.html">Resources</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+      </nav>
+    </header>
+    <main class="content-page article-page">
+      <p class="eyebrow">Status</p>
+      <h1>What fax delivery status actually means</h1>
+      <p>
+        Fax delivery status describes the transmission path between the sending system and the destination endpoint. It is
+        a technical signal, and it should be interpreted alongside any confirmation from the receiving organization.
+      </p>
+      <h2>Queued</h2>
+      <p>
+        Queued means the request was accepted and is waiting to be processed. At this stage, the destination endpoint has
+        not necessarily been contacted yet.
+      </p>
+      <h2>Sending</h2>
+      <p>
+        Sending means the fax is in progress. The final result may still be delivered or failed depending on line quality,
+        answer behavior, page negotiation, and timeout handling.
+      </p>
+      <h2>Delivered</h2>
+      <p>
+        Delivered means the fax transmission was reported as successful. It does not guarantee that the page was routed to
+        the right person, printed clearly, or reviewed by a recipient.
+      </p>
+      <h2>Failed</h2>
+      <p>
+        Failed means the transmission did not complete. Common causes include a non-fax number, busy destination, timeout,
+        poor line conditions, blocked destination, or a document that could not be processed.
+      </p>
+    </main>
+    <footer class="site-footer"><p>&copy; Fax Test Tool</p></footer>
+  </body>
+</html>

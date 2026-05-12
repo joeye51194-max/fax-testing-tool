@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Send a controlled test fax and track delivery status from a fax transmission provider.">
+    <title>Fax Test Tool</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">Fax Test Tool</a>
+      <nav aria-label="Main navigation">
+        <a href="/about.html">About</a>
+        <a href="/resources.html">Resources</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Fax endpoint delivery checks</p>
+          <h1>Send a test fax and watch the delivery result.</h1>
+          <p>
+            Enter a destination fax number, send a standard test page, and track the status as the fax network reports queueing,
+            sending, delivery, or failure.
+          </p>
+        </div>
+        <form id="fax-form" class="tool-panel" novalidate>
+          <label for="fax-number">Destination fax number</label>
+          <div class="input-row">
+            <input id="fax-number" name="to" type="tel" inputmode="tel" autocomplete="tel" placeholder="+15551234567" required>
+            <button type="submit">Send Test Fax</button>
+          </div>
+          <p class="field-help">Use E.164 format, including country code.</p>
+          <p id="mode-note" class="mode-note" hidden></p>
+        </form>
+      </section>
+
+      <section class="results-section" aria-live="polite">
+        <div class="section-heading">
+          <h2>Latest test</h2>
+          <button id="refresh-button" type="button" disabled>Refresh</button>
+        </div>
+        <div id="result-card" class="result-card empty">
+          <p>No test fax has been started yet.</p>
+        </div>
+      </section>
+
+      <section class="info-band">
+        <div>
+          <h2>What this verifies</h2>
+          <p>
+            A delivered result means the fax provider reported successful transmission to the destination endpoint. It does
+            not prove that a person reviewed, printed, or filed the document.
+          </p>
+        </div>
+        <div>
+          <h2>Built for safe testing</h2>
+          <p>
+            The app keeps API credentials on the server, rate limits public sends, and uses a simple generated PDF so test
+            pages are consistent.
+          </p>
+        </div>
+      </section>
+
+      <section class="resource-preview">
+        <div class="section-heading">
+          <h2>Fax testing guides</h2>
+          <a class="text-link" href="/resources.html">View all resources</a>
+        </div>
+        <div class="article-grid">
+          <a href="/articles/how-to-test-a-fax-number.html">
+            <span>Guide</span>
+            <h3>How to test a fax number without sending sensitive documents</h3>
+            <p>Use a neutral test page, clear permission, and a delivery log that separates provider status from human confirmation.</p>
+          </a>
+          <a href="/articles/fax-endpoint-readiness-checklist.html">
+            <span>Checklist</span>
+            <h3>Fax endpoint readiness checklist</h3>
+            <p>Review line assignment, answer behavior, routing, document quality, and retry expectations before production use.</p>
+          </a>
+          <a href="/articles/what-fax-delivery-status-means.html">
+            <span>Status</span>
+            <h3>What fax delivery status actually means</h3>
+            <p>Understand queued, sending, delivered, and failed events when troubleshooting fax transmission tests.</p>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; <span id="year"></span> Fax Test Tool</p>
+    </footer>
+
+    <script src="/app.js" defer></script>
+  </body>
+</html>
